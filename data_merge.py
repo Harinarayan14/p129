@@ -1,10 +1,37 @@
-#  imports
+# imports 
 import csv
 import pandas as pd
 
+# getting brown dwarfs data
+df = pd.read_csv("brown_dwarf.csv")
+
+# deleting na values
+df = df[df["distance"].notna()]
+df = df[df["mass"].notna()]
+df = df[df["radius"].notna()]
+
+# changing masses , radiuses to float and converting to solar mass , solar radius
+mass_list = []
+radius_list = []
+for i in df["mass"]:
+    i = float(i)
+    i = i*0.000954588
+    mass_list.append(i)
+for i in df["radius"]:
+    i = float(i)
+    i = i*0.102763
+    radius_list.append(i)
+df.mass = mass_list
+df.radius = radius_list
+
+# creating csv file
+df.to_csv("brown_dwarfs_modified.csv")
+
+
+
 # file names
 file1 = 'bright_stars.csv'
-file2 = 'brown_dwarf.csv'
+file2 = 'brown_dwarfs_modified.csv'
 
 # creating empty lists and saving data from files into lists
 data1 = []
@@ -44,4 +71,3 @@ with open("total_stars.csv",'w',encoding='utf8') as f:
     csvwriter = csv.writer(f)
     csvwriter.writerow(header)   
     csvwriter.writerows(planet_data)
-    
