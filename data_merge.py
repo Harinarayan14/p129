@@ -25,7 +25,7 @@ df.mass = mass_list
 df.radius = radius_list
 
 # creating csv file
-df.to_csv("brown_dwarfs_modified.csv")
+df.to_csv("brown_dwarfs_modified.csv",index=False)
 
 
 
