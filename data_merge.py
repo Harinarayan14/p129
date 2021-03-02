@@ -61,13 +61,12 @@ header = header1+header2
 
 # creating empty list and merging planet data in it
 planet_data =[]
+for index, data_row in enumerate(planet_data1):
+    planet_data.append(planet_data1[index]+planet_data2[index])
 
 # writing data in csv file
-for i in planet_data1:
-    planet_data.append(i)
-for j in planet_data2:
-    planet_data.append(j)
 with open("total_stars.csv",'w',encoding='utf8') as f:
     csvwriter = csv.writer(f)
     csvwriter.writerow(header)   
     csvwriter.writerows(planet_data)
+
